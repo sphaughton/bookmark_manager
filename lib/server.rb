@@ -1,5 +1,6 @@
 require 'data_mapper'
 require 'sinatra'
+require 'tag'
 
 class BookmarkManager < Sinatra::Base
 
@@ -19,10 +20,14 @@ class BookmarkManager < Sinatra::Base
     erb :index
   end
 
-  post '/links' do 
+  post '/links' do
     url = params["url"]
     title = params["title"]
-    Link.create(:url => url, :title => title)
+    tags = params["tags"].split(" ").map do |tag|
+      Tag.first_or_create(:text => tag)
+    end
+    Link.create(:url => url, :title => title, :tags => tags)
+
     redirect to('/')
   end
 
