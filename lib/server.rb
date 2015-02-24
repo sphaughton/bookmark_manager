@@ -1,6 +1,6 @@
 require 'data_mapper'
 require 'sinatra'
-require 'tag'
+
 
 class BookmarkManager < Sinatra::Base
 
@@ -11,6 +11,7 @@ class BookmarkManager < Sinatra::Base
   DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 
   require './lib/link'
+  require './lib/tag'
 
   DataMapper.finalize
   DataMapper.auto_upgrade!
@@ -30,7 +31,7 @@ class BookmarkManager < Sinatra::Base
     redirect to('/')
   end
 
-  get '/tags/:text' do 
+  get '/tags/:text' do
     tag = Tag.first(:text => params[:text])
     @links = tag ? tag.links : []
     erb :index
