@@ -1,4 +1,4 @@
 require 'rubygems'
-require './lib/server'
+require './server'
 
 run BookmarkManager
