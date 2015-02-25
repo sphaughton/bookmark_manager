@@ -1,11 +1,11 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem 'data_mapper'
 gem 'capybara'
-gem 'database_cleaner'
 gem 'data_mapper'
+gem 'database_cleaner'
 gem 'dm-postgres-adapter'
+gem 'rack-flash3'
 gem 'sinatra'
 
 group :test do
