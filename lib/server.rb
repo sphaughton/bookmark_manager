@@ -8,7 +8,6 @@ env = ENV['RACK_ENV'] || 'development'
 
 DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 
-
 class BookmarkManager < Sinatra::Base
 
   enable :sessions
@@ -43,7 +42,8 @@ class BookmarkManager < Sinatra::Base
 
   post '/users' do 
     user = User.create(:email => params[:email],
-                :password => params[:password])
+                :password => params[:password],
+                :password_confirmation => params[:password_confirmation])
     session[:user_id] = user.id
     redirect to('/')
   end
