@@ -4,13 +4,17 @@ require 'sinatra'
 require './lib/link'
 require './lib/tag'
 require './lib/user'
+require './spec/features/helpers/session'
 require_relative 'data_mapper_setup'
+
+include SessionHelpers
 
 class BookmarkManager < Sinatra::Base
 
   enable :sessions
   set :session_secret, 'super secret'
   use Rack::Flash
+  use Rack::MethodOverride
 
   get "/" do
     @links = Link.all
@@ -65,12 +69,9 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
-  helpers do
-
-    def current_user
-      @current_user ||=User.get(session[:user_id]) if session[:user_id]
-    end
-
+  delete '/sessions' do 
+    session.clear
+    flash.now[:notice] = "Good bye!"
   end
 
 end
