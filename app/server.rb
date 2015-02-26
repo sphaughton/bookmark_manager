@@ -1,15 +1,19 @@
 require 'data_mapper'
 require 'rack-flash'
 require 'sinatra'
+require 'sinatra/partial'
 require './lib/link'
 require './lib/tag'
 require './lib/user'
 require './spec/features/helpers/session'
 require_relative 'data_mapper_setup'
 
+set :partial_template_engine => :erb
+
 include SessionHelpers
 
 class BookmarkManager < Sinatra::Base
+  register Sinatra::Partial
 
   enable :sessions
   set :session_secret, 'super secret'
