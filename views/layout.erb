@@ -4,23 +4,25 @@
     <title>Bookmark Manager</title> 
 </head>
     <body>
-    <% if flash[:notice] %>
-      <div id="notice"><%= flash[:notice] %></div>
-    <% end %>
 
     <% if current_user %>
         Welcome, <%= current_user.email %>
     <% end %>
 
-    <% if flash[:errors] && !flash[:errors].empty? %>
-      Sorry, your passwords don't match
-    <ul id="errors">
-    <% flash[:errors].each do |error| %>
-    <li><%= error %></li>
+    <% if flash[:notice] %>
+      <div id="notice"><%= flash[:notice] %></div>
     <% end %>
-  </ul>
-<% end %>
+
+    <% if flash[:errors] && !flash[:errors].empty? %>
+    Sorry, your passwords don't match
+        <ul id="errors">
+            <% flash[:errors].each do |error| %>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    <% end %>
 
     <%= yield %>
+    
     </body>
 </html>
