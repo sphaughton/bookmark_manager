@@ -1,15 +1,16 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem 'capybara'
+gem 'bcrypt'
 gem 'data_mapper'
-gem 'database_cleaner'
 gem 'dm-postgres-adapter'
 gem 'rack-flash3'
 gem 'sinatra'
 gem 'sinatra-partial'
 
-group :test do
+group :development, :test do
+  gem 'capybara'
+  gem 'database_cleaner'
   gem 'rspec'
 end
 

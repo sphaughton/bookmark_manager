@@ -1,8 +1,4 @@
-module SessionHelpers
-
-  def current_user
-    @current_user ||=User.get(session[:user_id]) if session[:user_id]
-  end
+module SessionHelpers  
 
   def sign_up(email = "sean@example.com", password = "oranges!", password_confirmation = "oranges!")
     visit '/users/new'

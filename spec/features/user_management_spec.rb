@@ -1,4 +1,7 @@
 require 'spec_helper'
+require_relative 'helpers/session'
+
+include SessionHelpers
 
 feature "User signs up" do 
 
@@ -54,4 +57,4 @@ feature "User signs out" do
     expect(page).to have_content("Good bye!")
     expect(page).not_to have_content("Welcome, test@test.com")
   end
-  end
+end
